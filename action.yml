@@ -1,8 +1,9 @@
 name: 'Newman Action'
 description: 'Run Postman collections via Newman'
 author: 'Matt Ball'
-icon: 'check-square'
-color: 'orange'
+branding:
+  icon: 'check-square'
+  color: 'orange'
 inputs:
   collection:
     description: 'Postman collection to use'
