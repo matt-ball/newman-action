@@ -1,10 +1,13 @@
-name: 'Node 12 Template Action'
-description: 'Get started with Node actions'
-author: 'GitHub'
+name: 'Newman Action'
+description: 'Run Postman collections via Newman'
+author: 'Matt Ball'
 inputs:
-  myInput:
-    description: 'Input to use'
-    default: 'world'
+  collection:
+    description: 'Postman collection to use'
+    default: 'postman_collection.json'
+  environment:
+    description: 'Postman environment to use'
+    default: 'postman_environment.json'
 runs:
-  using: 'node12'
+  using: 'node6'
   main: 'lib/main.js'
