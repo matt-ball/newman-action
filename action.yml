@@ -12,5 +12,5 @@ inputs:
     description: 'Postman environment to use'
     default: 'postman_environment.json'
 runs:
-  using: 'node6'
+  using: 'node12'
   main: 'lib/main.js'
