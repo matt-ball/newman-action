@@ -1,6 +1,9 @@
 name: 'Newman Action'
 description: 'Run Postman collections via Newman'
 author: 'Matt Ball'
+branding:
+  icon: 'check-square'  
+  color: 'orange'
 inputs:
   collection:
     description: 'Postman collection to use'
@@ -9,5 +12,5 @@ inputs:
     description: 'Postman environment to use'
     default: 'postman_environment.json'
 runs:
-  using: 'node6'
+  using: 'node12'
   main: 'lib/main.js'
