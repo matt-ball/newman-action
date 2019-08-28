@@ -1,0 +1,314 @@
+{
+    "variable": [],
+    "info": {
+        "name": "c1",
+        "_postman_id": "34783f86-4a67-d3bd-ba5b-148495fa2f72",
+        "description": "Description",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "OAuth",
+            "events": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": "var data = JSON.parse(responseBody);\nvar oldNonce = environment.oldNonce;\nvar newNonce = data.form.oauth_nonce;\ntests[\"NewNonce\"]=(oldNonce != newNonce);\npostman.setEnvironmentVariable(\"oldNonce\", newNonce);\ntests[\"HasNonce\"]=data.form.oauth_nonce;console.log('oldNonce: '+oldNonce+', newNonce='+newNonce);console.log('Signature: '+data.form.oauth_signature);"
+                    }
+                }
+            ],
+            "request": {
+                "auth": {
+                    "type": "oauth1",
+                    "oauth1": [
+                        {
+                            "key": "consumerKey",
+                            "value": "ds"
+                        },
+                        {
+                            "key": "consumerSecret",
+                            "value": "asdgf"
+                        },
+                        {
+                            "key": "token",
+                            "value": ""
+                        },
+                        {
+                            "key": "tokenSecret",
+                            "value": ""
+                        },
+                        {
+                            "key": "signatureMethod",
+                            "value": "HMAC-SHA1"
+                        },
+                        {
+                            "key": "timestamp",
+                            "value": "1415542860"
+                        },
+                        {
+                            "key": "nonce",
+                            "value": "yPmTxQ"
+                        },
+                        {
+                            "key": "version",
+                            "value": "1.0"
+                        },
+                        {
+                            "key": "realm",
+                            "value": ""
+                        },
+                        {
+                            "key": "encodeOAuthSign",
+                            "value": true
+                        }
+                    ]
+                },
+                "url": "httpbin.org/post",
+                "method": "POST",
+                "headers": [],
+                "body": {
+                    "mode": "formdata",
+                    "formdata": []
+                },
+                "description": "Description"
+            },
+            "responses": []
+        },
+        {
+            "id": "51e6ecc7-ff3c-9bc0-8aea-b417c4723f69",
+            "name": "OAuth",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": "var data = JSON.parse(responseBody);\nvar oldNonce = environment.oldNonce;\nvar newNonce = data.form.oauth_nonce;\ntests[\"NewNonce\"]=(oldNonce != newNonce);\npostman.setEnvironmentVariable(\"oldNonce\", newNonce);\ntests[\"HasNonce\"]=data.form.oauth_nonce;console.log('oldNonce: '+oldNonce+', newNonce='+newNonce);console.log('Signature: '+data.form.oauth_signature);"
+                    }
+                }
+            ],
+            "request": {
+                "auth": {
+                    "type": "oauth2",
+                    "oauth2": [
+                        {
+                            "key": "accessToken",
+                            "value": "secretToken",
+                            "type": "string"
+                        },
+                        {
+                            "key": "addTokenTo",
+                            "value": "header",
+                            "type": "string"
+                        },
+                        {
+                            "key": "callBackUrl",
+                            "value": "https://foo.com/cb",
+                            "type": "string"
+                        },
+                        {
+                            "key": "authUrl",
+                            "value": "https://foo.com/au",
+                            "type": "string"
+                        },
+                        {
+                            "key": "accessTokenUrl",
+                            "value": "https://foo.com/at",
+                            "type": "string"
+                        },
+                        {
+                            "key": "clientId",
+                            "value": "uniqueClientIdentifier",
+                            "type": "string"
+                        },
+                        {
+                            "key": "clientSecret",
+                            "value": "secretClientValue",
+                            "type": "string"
+                        },
+                        {
+                            "key": "clientAuth",
+                            "value": "body",
+                            "type": "string"
+                        },
+                        {
+                            "key": "grantType",
+                            "value": "implicit",
+                            "type": "string"
+                        },
+                        {
+                            "key": "scope",
+                            "value": "all",
+                            "type": "string"
+                        },
+                        {
+                            "key": "username",
+                            "value": "postman",
+                            "type": "string"
+                        },
+                        {
+                            "key": "password",
+                            "value": "randomSecretString",
+                            "type": "string"
+                        },
+                        {
+                            "key": "tokenType",
+                            "value": "bearer",
+                            "type": "string"
+                        },
+                        {
+                            "key": "redirectUri",
+                            "value": "https://foo.com/rd",
+                            "type": "string"
+                        },
+                        {
+                            "key": "refreshToken",
+                            "value": "refreshToken",
+                            "type": "string"
+                        }
+                    ]
+                },
+                "url": "httpbin.org/post",
+                "method": "POST",
+                "header": [],
+                "data": {
+                    "mode": "formdata",
+                    "formdata": []
+                },
+                "description": ""
+            },
+            "response": []
+        },
+        {
+            "name": "basicAuth",
+            "events": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": "var data = JSON.parse(responseBody);\ntests[\"Correct Basic Signature generated\"] = data.headers.Authorization.has(\"Basic YWJoaWppdDprYW5l\");"
+                    }
+                }
+            ],
+            "request": {
+                "auth": {
+                    "type": "basic",
+                    "basic": [
+                        {
+                            "key": "username",
+                            "value": "abhijit"
+                        },
+                        {
+                            "key": "password",
+                            "value": "kane"
+                        }
+                    ]
+                },
+                "url": "httpbin.org/get",
+                "method": "GET",
+                "headers": [],
+                "body": {
+                    "mode": "formdata",
+                    "formdata": []
+                },
+                "description": "Description"
+            },
+            "responses": []
+        },
+        {
+            "id": "951fc3e8-c6b6-5c19-9f69-4e7499b3127f",
+            "name": "test bearer auth success",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": "var response = JSON.parse(responseBody); tests['Bearer auth should pass'] = response.status === 'pass';"
+                    }
+                }
+            ],
+            "request": {
+                "auth": {
+                    "type": "bearer",
+                    "bearer": [{
+                        "key": "token",
+                        "value": "wkjehbxoqnunc2k3",
+                        "type": "string"
+                    }]
+                },
+                "url": "http://echo.getpostman.com/auth/bearer",
+                "method": "GET",
+                "data": {
+                    "mode": "formdata",
+                    "formdata": []
+                },
+                "description": ""
+            },
+            "response": []
+        },
+        {
+            "name": "DigestAuth",
+            "events": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "type": "text/javascript",
+                        "exec": "var data = JSON.parse(responseBody);\ntests[\"DigestAuth\"] = data.headers.Authorization.has(\"Digest\");tests[\"Correct response signature generated\"]=data.headers.Authorization.has(\"8ef925a22b7fa71b5f63d2f210d0f669\");"
+                    }
+                }
+            ],
+            "request": {
+                "auth": {
+                    "type": "digest",
+                    "digest": [
+                        {
+                            "key": "algorithm",
+                            "value": "MD5"
+                        },
+                        {
+                            "key": "username",
+                            "value": "abhijit"
+                        },
+                        {
+                            "key": "realm",
+                            "value": "me@kennethreitz.com"
+                        },
+                        {
+                            "key": "password",
+                            "value": "kane"
+                        },
+                        {
+                            "key": "nonce",
+                            "value": "b595d63333715eaf0737e4255c288dc1"
+                        },
+                        {
+                            "key": "nonceCount",
+                            "value": "000001"
+                        },
+                        {
+                            "key": "clientNonce",
+                            "value": "abcfd"
+                        },
+                        {
+                            "key": "opaque",
+                            "value": "03a268317fb5ee47794496820f0bb4fd"
+                        },
+                        {
+                            "key": "qop",
+                            "value": "auth"
+                        }
+                    ]
+                },
+                "url": "httpbin.org/get",
+                "method": "GET",
+                "headers": [],
+                "body": {
+                    "mode": "formdata",
+                    "formdata": []
+                },
+                "description": "Description"
+            },
+            "responses": []
+        }
+    ]
+}

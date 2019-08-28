@@ -1,0 +1,25 @@
+{
+    "variable": [],
+    "info": {
+        "name": "proper-url-parsing",
+        "_postman_id": "7ea31a30-8377-0e56-d11f-5943e6527bca",
+        "description": "Description",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "request with hostname as variable",
+            "request": {
+                "url": "https://ani{{yo}}ket:{{asd}}@{{hellohost}}:2002/crazyvar/{{yo}}/:awesome?a=b&c=d#/awesomeshit",
+                "method": "GET",
+                "headers": [],
+                "body": {
+                    "mode": "formdata",
+                    "formdata": []
+                },
+                "description": "Description"
+            },
+            "responses": []
+        }
+    ]
+}

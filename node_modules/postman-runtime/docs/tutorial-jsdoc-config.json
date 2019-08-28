@@ -1,0 +1,23 @@
+{
+  "architecture": {
+    "title": "Architecture"
+  },
+  "components": {
+    "title": "Postman Runtime Components"
+  },
+  "request-send-flow": {
+    "title": "Request Send Flow"
+  },
+  "new-auth-mechanisms": {
+    "title": "New Authentication Mechanisms"
+  },
+  "new-body-mode": {
+    "title": "New Request Body Mode"
+  },
+  "history": {
+    "title": "Postman History"
+  },
+  "protocol-profile-behavior": {
+    "title": "Protocol Profile Behavior"
+  }
+}

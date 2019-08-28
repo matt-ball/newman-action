@@ -1,0 +1,179 @@
+{
+	"info": {
+		"name": "auth-v1",
+		"_postman_id": "46da69ac-9035-50c4-fcab-44d9167e06f4",
+		"description": "A simple V1 collection to elucidate nested auth helpers, variables, and scripts",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+  "variable": [{
+    "key": "collection",
+    "value": "variable",
+    "type": "string",
+    "description": "This is a collection level variable"
+  }],
+	"auth": {
+		"type": "basic",
+		"basic": {
+			"username": "{{username}}",
+			"password": "{{token}}"
+		}
+	},
+	"event": [
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"console.log('Collection level test script');"
+				]
+			}
+		},
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"console.log('Collection level pre request script');"
+				]
+			}
+		}
+	],
+	"item": [
+		{
+			"name": "F1",
+			"description": "Folder 1",
+      "variable": [{
+        "key": "folder",
+        "value": "variable",
+        "type": "string",
+        "description": "This is a folder level variable"
+      }],
+			"auth": {
+				"type": "basic",
+				"basic": {
+					"username": "{{username}}",
+					"password": "{{token}}"
+				}
+			},
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"console.log('Folder level test script');"
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"console.log('Folder level pre request script');"
+						]
+					}
+				}
+			],
+			"item": [
+				{
+					"name": "Basic",
+          "variable": [{
+            "key": "request",
+            "value": "variable",
+            "type": "string",
+            "description": "This is a request level variable"
+          }],
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"console.log('Request level test script');"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"console.log('Request level pre request script');"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"username": "{{username}}",
+								"password": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": "https://postman-echo.com/get",
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "OAuth1",
+      "variable": [{
+        "key": "request",
+        "value": "variable",
+        "type": "string",
+        "description": "This is a request level variable"
+      }],
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"console.log('Request level test script');"
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"console.log('Request level pre request script');"
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth1",
+					"oauth1": {
+						"consumerKey": "RKCGzna7bv9YD57c",
+						"consumerSecret": "D+EdQ-gs$-%@2Nu7",
+						"token": "",
+						"tokenSecret": "",
+						"signatureMethod": "HMAC-SHA1",
+						"timestamp": "1500452534",
+						"nonce": "S0kXloMHurS",
+						"version": "1.0",
+						"realm": "",
+						"addParamsToHeader": false,
+						"addEmptyParamsToSign": false
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": "https://postman-echo.com/get",
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,312 @@
+{
+	"id": "371e9fa3-97d3-ca11-07c0-836a72a325c2",
+	"name": "auth-v1",
+	"description": "A simple V1 collection to elucidate nested auth helpers, variables, and scripts",
+	"order": [
+		"32435cc1-e185-cdc8-be08-1f08d37280da",
+		"f619a417-7ab7-d28b-e75e-f110b5862eb6",
+		"1a4530d5-21d3-d7a9-e923-ccdf2b0f97a0"
+	],
+	"folders": [
+		{
+			"name": "F1",
+			"description": "Folder 1",
+			"collectionId": "371e9fa3-97d3-ca11-07c0-836a72a325c2",
+			"order": [
+				"a742022f-ff24-18c5-6e8b-0c4e7d7aee08",
+				"95b3bde0-96a2-7f91-8e65-e007bb28ae62",
+				"fd20f294-3f94-c979-3440-4934c89c353d"
+			],
+			"auth": {
+        "type": "digest",
+        "digest": [
+          {
+            "key": "algorithm",
+            "value": "MD5",
+            "type": "string"
+          },
+          {
+            "key": "username",
+            "value": "postman",
+            "type": "string"
+          },
+          {
+            "key": "realm",
+            "value": "{{echo_digest_realm}}",
+            "type": "string"
+          },
+          {
+            "key": "password",
+            "value": "password",
+            "type": "string"
+          },
+          {
+            "key": "nonce",
+            "value": "{{echo_digest_nonce}}",
+            "type": "string"
+          },
+          {
+            "key": "nonceCount",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "key": "clientNonce",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "key": "opaque",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "key": "qop",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "key": "saveToRequest",
+            "value": true,
+            "type": "boolean"
+          }
+        ]
+      },
+      "variables": [{
+        "key": "folder",
+        "value": "variable",
+        "type": "string",
+        "description": "This is a folder level variable"
+      }],
+			"owner": "640245",
+			"folders_order": [],
+			"id": "5be148b3-0081-5a59-5273-9014161b0292"
+		}
+	],
+	"folders_order": [
+		"5be148b3-0081-5a59-5273-9014161b0292"
+	],
+  "variables": [{
+    "key": "collection",
+    "value": "variable",
+    "type": "string",
+    "description": "This is a collection level variable"
+  }],
+	"timestamp": 1504507037786,
+	"owner": "640245",
+	"public": false,
+  "events": [{
+    "listen": "prerequest",
+    "script": {
+      "type": "text/javascript",
+      "exec": ["console.log('Collection level pre request script');"]
+    }
+  }, {
+    "listen": "test",
+    "script": {
+      "type": "text/javascript",
+      "exec": ["console.log('Collection level test script');"]
+    }
+  }],
+  "auth": {
+    "type": "awsv4",
+    "awsv4": [
+      {
+        "key": "accessKey",
+        "value": "{{id}}",
+        "type": "string"
+      },
+      {
+        "key": "secretKey",
+        "value": "{{key}}",
+        "type": "string"
+      },
+      {
+        "key": "region",
+        "value": "us-east-1",
+        "type": "string"
+      },
+      {
+        "key": "service",
+        "value": "iam",
+        "type": "string"
+      },
+      {
+        "key": "sessionToken",
+        "value": "",
+        "type": "string"
+      },
+      {
+        "key": "saveToRequest",
+        "value": true,
+        "type": "boolean"
+      }
+    ]
+  },
+	"requests": [
+		{
+			"id": "a742022f-ff24-18c5-6e8b-0c4e7d7aee08",
+			"headers": "",
+			"headerData": [],
+			"url": "https://postman-echo.com/get",
+			"folder": "5be148b3-0081-5a59-5273-9014161b0292",
+			"queryParams": [],
+			"preRequestScript": "console.log('Request level pre request script');",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": "console.log('Request level test script');",
+      "auth": {
+        "type": "basic",
+        "basic": [
+          {
+            "key": "username",
+            "value": "{{username}}",
+            "type": "string"
+          },
+          {
+            "key": "password",
+            "value": "{{token}}",
+            "type": "string"
+          }
+        ]
+      },
+			"currentHelper": "basicAuth",
+			"helperAttributes": {
+				"id": "basic",
+				"username": "{{username}}",
+				"password": "{{token}}",
+				"saveToRequest": true
+			},
+			"time": 1504507088801,
+			"name": "Basic",
+			"description": "",
+			"collectionId": "371e9fa3-97d3-ca11-07c0-836a72a325c2",
+			"responses": [],
+      "variables": [{
+        "key": "request",
+        "value": "variable",
+        "type": "string",
+        "description": "This is a request level variable"
+      }],
+			"isFromCollection": true,
+			"collectionRequestId": "a742022f-ff24-18c5-6e8b-0c4e7d7aee08"
+		},
+		{
+			"id": "f619a417-7ab7-d28b-e75e-f110b5862eb6",
+			"headers": "",
+			"headerData": [],
+			"url": "https://postman-echo.com/get",
+			"queryParams": [],
+			"preRequestScript": "console.log('Request level pre request script');",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": "console.log('Request level test script');",
+      "auth": {
+        "type": "oauth1",
+        "oauth1": [
+          {
+            "key": "consumerKey",
+            "value": "RKCGzna7bv9YD57c",
+            "type": "string"
+          },
+          {
+            "key": "consumerSecret",
+            "value": "D+EdQ-gs$-%@2Nu7",
+            "type": "string"
+          },
+          {
+            "key": "token",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "key": "tokenSecret",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "key": "signatureMethod",
+            "value": "HMAC-SHA1",
+            "type": "string"
+          },
+          {
+            "key": "timestamp",
+            "value": "1500452534",
+            "type": "string"
+          },
+          {
+            "key": "nonce",
+            "value": "S0kXloMHurS",
+            "type": "string"
+          },
+          {
+            "key": "version",
+            "value": "1.0",
+            "type": "string"
+          },
+          {
+            "key": "realm",
+            "value": "",
+            "type": "string"
+          },
+          {
+            "key": "encodeSignature",
+            "value": true,
+            "type": "boolean"
+          },
+          {
+            "key": "header",
+            "value": false,
+            "type": "boolean"
+          },
+          {
+            "key": "includeEmpty",
+            "value": false,
+            "type": "boolean"
+          },
+          {
+            "key": "saveToRequest",
+            "value": true,
+            "type": "boolean"
+          }
+        ]
+      },
+			"currentHelper": "oAuth1",
+			"helperAttributes": {
+				"id": "oAuth1",
+				"consumerKey": "RKCGzna7bv9YD57c",
+				"consumerSecret": "D+EdQ-gs$-%@2Nu7",
+				"token": "",
+				"tokenSecret": "",
+				"signatureMethod": "HMAC-SHA1",
+				"timestamp": "1500452534",
+				"nonce": "S0kXloMHurS",
+				"version": "1.0",
+				"realm": "",
+				"encodeSignature": true,
+				"header": false,
+				"includeEmpty": false,
+				"saveToRequest": true
+			},
+			"time": 1504507141155,
+			"name": "OAuth1",
+			"description": "",
+      "variables": [{
+        "key": "request",
+        "value": "variable",
+        "type": "string",
+        "description": "This is a request level variable"
+      }],
+			"collectionId": "371e9fa3-97d3-ca11-07c0-836a72a325c2",
+			"responses": []
+		}
+	]
+}

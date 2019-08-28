@@ -1,0 +1,94 @@
+{
+  "variables": [],
+  "info": {
+    "name": "Head test",
+    "_postman_id": "9997428c-5951-3fd2-2a02-88bbe9d91c7f",
+    "description": "A set of tests for checking HEAD requests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "google",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": "tests['Status is 200 OK'] = responseCode.code === 200;"
+          }
+        }
+      ],
+      "request": {
+        "url": "http://google.com",
+        "method": "HEAD",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "github",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": "tests['Status is 200 OK'] = responseCode.code === 200;"
+          }
+        }
+      ],
+      "request": {
+        "url": "http://github.com",
+        "method": "HEAD",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "with request body",
+      "event": [{
+        "listen": "test",
+        "script": {
+          "id": "088721b0-c2e6-47fa-85b0-8a4f79c71f82",
+          "type": "text/javascript",
+          "exec": [
+            "pm.test(\"Response Body\", function () {",
+            "    var response = pm.response.headers.get('raw-request');",
+            "    pm.expect(response).to.contain('HEAD / HTTP/1.1');",
+            "    pm.expect(response).to.contain('Content-Type: multipart/form-data');",
+            "    pm.expect(response).to.contain('Content-Disposition: form-data;');",
+            "    pm.expect(response).to.contain('FormDataValue');",
+            "});"
+          ]
+        }
+      }],
+      "request": {
+        "url": "http://localhost:4041",
+        "method": "HEAD",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [{
+            "key": "dataKey",
+            "value": "FormDataValue",
+            "type": "text"
+          }]
+        },
+        "description": ""
+      },
+      "response": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,190 @@
+{
+	"info": {
+		"_postman_id": "85a5a19a-744c-44a0-949f-6f782601ba41",
+		"name": "Collection with multi level folders",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"_postman_id": "789ec39c-1d49-4caa-b80c-db317f2a22fc",
+			"name": "F1",
+			"description": "",
+			"item": [
+				{
+					"_postman_id": "6a1b7c01-d90a-44d8-bb20-1c918ed7d05f",
+					"name": "F2",
+					"description": "",
+					"item": [
+						{
+							"_postman_id": "968a003d-8e5e-4f6e-9702-e555842eb816",
+							"name": "F3",
+							"description": "",
+							"item": [
+								{
+									"_postman_id": "a430a24d-de5e-452b-b4d9-cd61d9f72ab3",
+									"name": "R3",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {},
+										"url": {
+											"raw": ""
+										}
+									},
+									"response": [
+										{
+											"id": "60b164cb-594c-45dc-88fc-33029a644bb2",
+											"name": "Example 1",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"body": {},
+												"url": {
+													"raw": ""
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							],
+							"_postman_isSubFolder": true
+						},
+						{
+							"_postman_id": "0cfa0f79-d792-4808-80b7-554fe9b95e88",
+							"name": "R2",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": ""
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"_postman_id": "ebbf4eef-07b1-46f3-9263-763ce7249a12",
+					"name": "R1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": [
+						{
+							"id": "be0e281a-6b5b-4542-8830-22ec13f0ad8f",
+							"name": "Example 2",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": ""
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"_postman_id": "dd31e2af-e683-43e7-b2ba-b2ad465b60e8",
+			"name": "F4",
+			"description": "",
+			"item": [
+				{
+					"_postman_id": "2f42f3ea-c329-414d-8505-af15531943a0",
+					"name": "F5",
+					"description": "",
+					"item": [
+						{
+							"_postman_id": "1a2da58d-71df-4ee4-a075-ebde55480892",
+							"name": "R5",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": ""
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"_postman_id": "68f7d089-fcf9-4699-b34f-4f3ffb38fd02",
+					"name": "F6",
+					"description": "",
+					"item": [
+						{
+							"_postman_id": "867b4e33-0883-4cd3-b99c-a34841008d0a",
+							"name": "R6",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": ""
+								}
+							},
+							"response": [
+								{
+									"id": "61ed5253-6858-4ab9-8dcf-d34ae6ca068c",
+									"name": "Example 3",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {},
+										"url": {
+											"raw": ""
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"_postman_id": "10ec1d43-1dc6-4955-a8ab-c6e5013dc591",
+					"name": "R4",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

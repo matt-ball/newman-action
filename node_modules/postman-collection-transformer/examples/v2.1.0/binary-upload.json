@@ -1,0 +1,39 @@
+{
+  "variable": [],
+  "info": {
+    "name": "asdasdasdasdasdasd",
+    "_postman_id": "70fa9b38-91c0-7e67-0ead-b31622bdc152",
+    "description": "Description",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "_postman_id": "cc0e1894-bad7-aeeb-e91c-e74635371614",
+      "name": "http://httpbin.org/post",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "console.log(responseBody)"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "url": "http://echo.getpostman.com/post",
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "file",
+          "file": {
+            "src": "sample.txt"
+          }
+        },
+        "description": "Description"
+      },
+      "response": []
+    }
+  ]
+}

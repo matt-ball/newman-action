@@ -1,0 +1,176 @@
+{
+  "variable": [],
+  "info": {
+    "name": "multi-level-folders",
+    "_postman_id": "e5f2e9cf-173b-c60a-7336-ac804a87d762",
+    "description": "A simple V2 collection to test out multi level folder flows",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "F1",
+      "id": "F1",
+      "description": "Description",
+      "item": [
+        {
+          "name": "F1.R1",
+          "id": "F1.R1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "tests[\"Status code is 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "https://postman-echo.com/get",
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "description": "Description"
+          },
+          "response": []
+        },
+        {
+          "name": "F1.R2",
+          "id": "F1.R2",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "tests[\"Status code is 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "https://postman-echo.com/get",
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "description": "Description"
+          },
+          "response": []
+        },
+        {
+          "name": "F1.R3",
+          "id": "F1.R3",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "tests[\"Status code is 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "https://postman-echo.com/get",
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "description": "Description"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "F2",
+      "id": "F2",
+      "description": "Description",
+      "item": [
+        {
+          "name": "F2.F3",
+          "id": "F2.F3",
+          "description": "Description",
+          "item": [
+            {
+              "name": "F2.F3.R1",
+              "id": "F2.F3.R1",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "tests[\"Status code is 200\"] = responseCode.code === 200;"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "url": "https://postman-echo.com/get",
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "description": "Description"
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "F2.F4",
+          "id": "F2.F4",
+          "description": "Description",
+          "item": []
+        },
+        {
+          "name": "F2.R1",
+          "id": "F2.R1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "tests[\"Status code is 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "url": "https://postman-echo.com/get",
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "description": "Description"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "R1",
+      "id": "R1",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "tests[\"Status code is 200\"] = responseCode.code === 200;"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "url": "https://postman-echo.com/get",
+        "method": "GET",
+        "header": [],
+        "body": {},
+        "description": "Description"
+      },
+      "response": []
+    }
+  ]
+}

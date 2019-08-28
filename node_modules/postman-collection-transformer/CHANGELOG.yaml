@@ -1,0 +1,252 @@
+3.1.2:
+  date: 2019-08-01
+  chores:
+    - Updated dependencies
+
+3.1.1:
+  date: 2019-05-17
+  bugs fixed:
+    - Fixed a bug where params with empty key get filtered
+
+3.1.0:
+  date: 2019-05-13
+  new features:
+    - GH-207 Added support for GraphQL request body
+  chores:
+    - Updated dependencies
+
+3.0.2:
+  date: 2019-04-29
+  chores:
+    - GH-198 Added support for multiple file in form-data
+    - Updated dependencies
+
+3.0.1:
+  date: 2019-04-02
+  bugs fixed:
+    - GH-184 Set null body if dataMode is null during v1 -> v2.x conversions
+  chores:
+    - Updated dependencies
+
+3.0.0:
+  date: 2018-11-8
+  breaking changes:
+    - GH-124 Dropped support for Node v4
+  fixed bugs:
+    - GH-112 Corrected retainIds behaviour for v1->v2 transformations
+    - GH-121 Added handling for null valued request bodies
+  chores:
+    - GH-122 Added `.gitattributes` to enforce consistent line endings
+    - GH-126 Switched to Travis for Windows tests
+    - GH-123 Removed NSP (replaced with Snyk)
+    - Updated dependencies
+
+2.8.0:
+  date: 2018-09-20
+  new features:
+    - GH-118 Added support for the `protocolProfileBehaviour` data element
+
+2.7.0:
+  date: 2018-09-11
+  new features:
+    - GH-117 Added support for disabled request body flag
+
+2.6.3:
+  date: 2018-08-29
+  fixed bugs:
+    - GH-115 Coerced non-string formdata file values in request bodies to `null`
+
+2.6.2:
+  date: 2018-08-6
+  fixed bugs:
+    - GH-111 Updated `url.parse` to correctly account for path variables
+
+2.6.1:
+  date: 2018-07-24
+  fixed bugs:
+    - GH-110 Prevent folder id replacement in v2.x -> v1 transformations
+  chores:
+    - GH-109 Increased test coveragee to 95%
+
+2.6.0:
+  date: 2018-07-10
+  new features:
+    - GH-107 Added support for `retainEmptyValues` in all flows
+
+2.5.10:
+  date: 2018-07-4
+  fixed bugs:
+    - GH-105 Fixed a bug in url parsing protocol extraction
+  chores:
+    - GH-106 Updated dependencies
+
+2.5.9:
+  date: 2018-04-30
+  fixed bugs:
+    - GH-103 Fixed `retainIds` behaviour for v1 to v2 conversions
+  chores:
+    - GH-104 Updated dependencies
+
+2.5.8:
+  date: 2018-03-13
+  fixed bugs:
+    - >-
+      GH-102 Improved handling for `null` valued query parameters in
+      transformations from `v1`
+  chores:
+    - Updated dependencies
+
+2.5.7:
+  date: 2018-03-1
+  fixed bugs:
+    - GH-101 Fixed text `type` mapping for `auth` and `variable` fields
+
+2.5.6:
+  date: 2018-02-23
+  chores:
+    - GH-100 Auth mapping improvements
+
+2.5.5:
+  date: 2018-02-6
+  fixed bugs:
+    - GH-99 Fixed empty description bug for v1 -> v2 transformations
+  chores:
+    - Updated dependencies
+
+2.5.4:
+  date: 2018-01-7
+  new features:
+    - GH-98 Improved `script.exec` type safety in v1 normalization
+  chores:
+    - Updated dependencies
+
+2.5.3:
+  date: 2017-12-18
+  fixed bugs:
+    - GH-97 Fixed a bug that caused query params to be duplicted
+
+2.5.2:
+  date: 2017-12-12
+  fixed bugs:
+    - GH-96 Made empty description pruning optional with `retainEmptyValues`
+
+2.5.1:
+  date: 2017-12-1
+  fixed bugs:
+    - GH-95 Improved type safety in folder and request transformations
+
+2.5.0:
+  date: 2017-11-22
+  new features:
+    - >-
+      GH-94 Added support for the `prioritizeV2` option to v1 normalization and
+      v1 -> v2.x conversions
+
+2.4.3:
+  date: 2017-11-20
+  fixed bugs:
+    - GH-92 Fixed legacy property handling for non-complete event normalization
+
+2.4.2:
+  date: 2017-11-20
+  fixed bugs:
+    - GH-91 Fixed default auth state derivation logic
+
+2.4.1:
+  date: 2017-11-18
+  fixed bugs:
+    - GH-90 Fixed empty stage handling logic for auth helpers
+  chores:
+    - GH-89 Reorganized package structure
+    - GH-88 Updated dependencies
+
+2.4.0:
+  date: 2017-11-7
+  new features:
+    - GH-84 Added support for `noDefaults` for v1 normalizations
+    - GH-81 Added support for `mutate` to v1 normalizations
+    - GH-79 Added `normalize.*` function to sanitize v1 collections
+    - GH-78 Added support for inherited entity transformations
+  fixed bugs:
+    - GH-82 `noauth` and `normal` auth handlers are now left alone
+  chores:
+    - GH-87 Tested code on Node v8
+
+2.3.1:
+  date: 2017-10-3
+  fixed bugs:
+    - GH-77 Corrected OAuth2 param transformations
+
+2.3.0:
+  date: 2017-09-30
+  new features:
+    - GH-76 Added support for NTLM and Bearer Token auth transformations
+
+2.2.1:
+  date: 2017-09-28
+  fixed bugs:
+    - GH-75 Restored support for string-object hybrid v2 URLs
+
+2.2.0:
+  date: 2017-09-4
+  new features:
+    - >-
+      GH-66,67,68 Added support for transformations to and from the `v2.1.0`
+      format
+  fixed bugs:
+    - GH-62 Enforced an object structure for V2 collection request URLs
+    - GH-61 Prevented empty descriptions from showing up across transformations
+  chores:
+    - GH-65 Updated dependencies
+
+2.1.5:
+  date: 2017-06-28
+  new features:
+    - >-
+      GH-60 Allowed both: `key` and `id` as identifers for path variables in v2
+      collections
+
+2.1.4:
+  date: 2017-06-19
+  chores:
+    - No code changes
+
+2.1.3:
+  date: 2017-06-09
+  fixed bugs:
+    - >-
+      Fixed a bug in the URL parse implementation, by copying the parser &
+      unparser from the sdk
+
+2.1.2:
+  date: 2017-05-25
+  fixed bugs:
+    - >-
+      Handle an edge case where an unhandled ID is provided in the
+      `requestObject`
+
+2.1.1:
+  date: 2017-05-22
+  new features:
+    - Added the ability to convert single responses as well
+  fixed bugs:
+    - >-
+      Fixed a bug where the `requestObject` was missing when doing v2 to v1
+      conversions
+
+2.1.0:
+  date: 2017-05-12
+  initial release:
+    - >-
+      Descriptions for headers, url query params, url path variables, and
+      request body data are now handled in transformations
+    - >-
+      Fix disabled: true header (`v2`) <-> // (commented) header (`v1`)
+      transformations
+    - >-
+      Fixed bug where both enabled and disabled would appear in transformed
+      entities
+    - Request body transformations now follow `v1` - `v2` compliance
+    - >-
+      Removed unwanted `enabled: true` properties from query params, headers,
+      and request body data

@@ -1,0 +1,17 @@
+{
+  "plugins": [
+      "security"
+  ],
+  "globals": {
+    "echo": true,
+    "exec": true,
+    "rm": true,
+    "set": true,
+    "test": true,
+    "mkdir": true,
+    "exit": true
+  },
+  "rules": {
+    "security/detect-non-literal-fs-filename": "off"
+  }
+}
