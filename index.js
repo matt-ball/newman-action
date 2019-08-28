@@ -27,9 +27,9 @@ function runNewman (options) {
   newman.run(options).on('done', (err, summary) => {
     console.log('in done')
     console.log('err', err)
-    console.log('summaryerr', summary.error)
-    if (err || summary.error) {
-      core.setFailed('Newman run failed!' + (err || summary.error))
+    console.log('summaryerr', JSON.stringify(summary))
+    if (err || (summary.failures && summary.failures.length)) {
+      core.setFailed('Newman run failed!' + (err || summary.failures))
     }
   })
 }
