@@ -5,12 +5,13 @@ run()
 
 async function run () {
   try {
-    const options = {
-      collection: core.getInput('collection'),
-      environment: core.getInput('environment')
-    }
+    const apiKey = core.getInput('postmanApiKey')
+    const apiParam = `?apikey=${apiKey}`
 
-    options.environment = require('./' + options.environment)
+    const options = {
+      collection: core.getInput('collection') + apiParam,
+      environment: core.getInput('environment') + apiParam
+    }
 
     runNewman(options)
   } catch (error) {

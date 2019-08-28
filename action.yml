@@ -5,6 +5,9 @@ branding:
   icon: 'check-square'  
   color: 'orange'
 inputs:
+  apiKey:
+    description: 'Postman API key'
+    default: ${{ secrets.postmanApiKey }}
   collection:
     description: 'Postman collection to use'
     default: 'postman_collection.json'
