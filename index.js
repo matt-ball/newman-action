@@ -1,14 +1,24 @@
 const core = require('@actions/core')
+const newman = require('newman')
+
+run()
 
 async function run () {
   try {
-    const collection = core.getInput('collection')
-    const environment = core.getInput('environment')
+    const options = {
+      collection: core.getInput('collection'),
+      environment: core.getInput('environment')
+    }
 
-    console.log(collection, environment)
+    runNewman(options)
   } catch (error) {
     core.setFailed(error.message)
   }
 }
 
-run()
+function runNewman (options) {
+  newman.run(options, (err) => {
+    if (err) { throw err }
+    console.log('collection run complete!')
+  })
+}

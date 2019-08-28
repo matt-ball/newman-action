@@ -17,9 +17,12 @@
     "newman"
   ],
   "author": "Matt Ball",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "dependencies": {
     "@actions/core": "^1.0.0",
     "newman": "^4.5.4"
+  },
+  "devDependencies": {
+    "standard": "^14.0.2"
   }
 }
