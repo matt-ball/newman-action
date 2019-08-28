@@ -26,9 +26,7 @@ async function run () {
 function runNewman (options) {
   newman.run(options).on('done', (err, summary) => {
     if (err || summary.error) {
-      process.exit(1)
-    } else {
-      process.exit(0)
+      core.setFailed(err || summary.error)
     }
   })
 }
