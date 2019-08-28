@@ -25,11 +25,8 @@ async function run () {
 
 function runNewman (options) {
   newman.run(options).on('done', (err, summary) => {
-    console.log('in done')
-    console.log('err', err)
-    console.log('summaryerr', JSON.stringify(summary))
-    if (err || (summary.failures && summary.failures.length)) {
-      core.setFailed('Newman run failed!' + (err || summary.failures))
+    if (err || summary.run.failures.length) {
+      core.setFailed('Newman run failed!' + (err || summary.run.failures))
     }
   })
 }
