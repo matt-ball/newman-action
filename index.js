@@ -10,6 +10,8 @@ async function run () {
       environment: core.getInput('environment')
     }
 
+    options.environment = require('./' + options.environment)
+
     runNewman(options)
   } catch (error) {
     core.setFailed(error.message)
