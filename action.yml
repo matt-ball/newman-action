@@ -7,7 +7,7 @@ branding:
 inputs:
   apiKey:
     description: 'Postman API key'
-    default: '${{ secrets.postmanApiKey }}'
+    default: 'postmanApiKey'
   collection:
     description: 'Postman collection to use'
     default: 'postman_collection.json'
