@@ -12,6 +12,7 @@ async function run () {
     const apiBase = 'https://api.getpostman.com'
 
     const options = {
+      reporters: 'cli',
       collection: `${apiBase}/collections/${collectionId}${apiParam}`,
       environment: `${apiBase}/environments/${environmentId}${apiParam}`
     }
