@@ -26,7 +26,7 @@ async function run () {
 function runNewman (options) {
   newman.run(options).on('done', (err, summary) => {
     if (err || summary.run.failures.length) {
-      core.setFailed('Newman run failed!' + (err || summary.run.failures))
+      core.setFailed('Newman run failed!' + (err || '')
     }
   })
 }
