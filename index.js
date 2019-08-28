@@ -24,8 +24,5 @@ async function run () {
 }
 
 function runNewman (options) {
-  newman.run(options, (err) => {
-    if (err) { throw err }
-    console.log('collection run complete!')
-  })
+  newman.run(options, process.exit)
 }
