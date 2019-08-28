@@ -6,11 +6,14 @@ run()
 async function run () {
   try {
     const apiKey = core.getInput('postmanApiKey')
+    const collectionId = core.getInput('collection')
+    const environmentId = core.getInput('environment')
     const apiParam = `?apikey=${apiKey}`
+    const apiBase = 'https://api.getpostman.com'
 
     const options = {
-      collection: core.getInput('collection') + apiParam,
-      environment: core.getInput('environment') + apiParam
+      collection: `${apiBase}/collections/${collectionId}${apiParam}`,
+      environment: `${apiBase}/environments/${environmentId}${apiParam}`
     }
 
     runNewman(options)
