@@ -13,4 +13,4 @@ inputs:
     default: 'postman_environment.json'
 runs:
   using: 'node12'
-  main: 'lib/main.js'
+  main: 'index.js'
