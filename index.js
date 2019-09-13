@@ -1,5 +1,6 @@
 const core = require('@actions/core')
 const newman = require('newman')
+const fs = require('fs')
 
 run()
 
@@ -11,6 +12,7 @@ async function run () {
     const apiParam = `?apikey=${apiKey}`
     const apiBase = 'https://api.getpostman.com'
 
+    console.log(collectionId)
     console.log(fs.readFileSync('postman_collection.json'))
 
     const options = {
