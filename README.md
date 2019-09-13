@@ -68,4 +68,4 @@ See [Workflow syntax for GitHub Actions](https://help.github.com/en/articles/wor
 
 ## Other settings
 
-As well as `postmanApiKey`, `collection`, and `environment`. You can pass a `reporters` option if you'd like to run a custom reporter. The default is `cli`.
+As well as `postmanApiKey`, `collection`, and `environment`, all other Newman settings are supported. You can find a full list [on the Newman docs](https://github.com/postmanlabs/newman#api-reference).
