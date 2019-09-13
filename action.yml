@@ -14,6 +14,9 @@ inputs:
   environment:
     description: 'Postman environment to use'
     default: 'postman_environment.json'
+  reporters:
+    description: 'Reporters to use'
+    default: 'cli'
 runs:
   using: 'node12'
   main: 'index.js'

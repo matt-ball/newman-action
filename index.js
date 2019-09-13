@@ -1,25 +1,33 @@
 const core = require('@actions/core')
 const newman = require('newman')
-const fs = require('fs')
 
 run()
 
 async function run () {
   try {
     const apiKey = core.getInput('postmanApiKey')
-    const collectionId = core.getInput('collection')
-    const environmentId = core.getInput('environment')
+
+    if (!apiKey) {
+      core.warn('No Postman API key provided.')
+    }
+
+    let collection = core.getInput('collection')
+    let environment = core.getInput('environment')
+    const reporters = core.getInput('reporters')
+
     const apiParam = `?apikey=${apiKey}`
     const apiBase = 'https://api.getpostman.com'
+    const idRegex = /^[0-9]{7}-\w{8}-\w{4}-\w{4}-\w{4}-\w{12}$/
 
-    console.log(collectionId)
-    console.log(fs.readFileSync('postman_collection.json'))
-
-    const options = {
-      reporters: 'cli',
-      collection: `${apiBase}/collections/${collectionId}${apiParam}`,
-      environment: `${apiBase}/environments/${environmentId}${apiParam}`
+    if (collection.match(idRegex)) {
+      collection = `${apiBase}/collections/${collection}${apiParam}`
     }
+
+    if (environment.match(idRegex)) {
+      environment = `${apiBase}/environments/${environment}${apiParam}`
+    }
+
+    const options = { reporters, collection, environment }
 
     runNewman(options)
   } catch (error) {
