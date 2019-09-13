@@ -47,6 +47,12 @@ async function init () {
       options.environment = `${apiBase}/environments/${options.environment}${options.apiKey}`
     }
 
+    if (options.globals) {
+      try {
+        options.globals = JSON.parse(options.globals)
+      } catch (e) {}
+    }
+
     runNewman(options)
   } catch (error) {
     core.setFailed(error.message)
