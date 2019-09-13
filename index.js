@@ -9,6 +9,9 @@ async function init () {
     const apiBase = 'https://api.getpostman.com'
     const idRegex = /^[0-9]{7}-\w{8}-\w{4}-\w{4}-\w{4}-\w{12}$/
 
+    console.log(get('globals'))
+    console.log(get('iterationCount'))
+
     const options = {
       apiKey: '?apikey=' + get('postmanApiKey'),
       collection: get('collection'),
