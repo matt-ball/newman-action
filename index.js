@@ -11,6 +11,8 @@ async function run () {
     const apiParam = `?apikey=${apiKey}`
     const apiBase = 'https://api.getpostman.com'
 
+    console.log(fs.readFileSync('postman_collection.json'))
+
     const options = {
       reporters: 'cli',
       collection: `${apiBase}/collections/${collectionId}${apiParam}`,
