@@ -9,9 +9,6 @@ async function init () {
     const apiBase = 'https://api.getpostman.com'
     const idRegex = /^[0-9]{7}-\w{8}-\w{4}-\w{4}-\w{4}-\w{12}$/
 
-    console.log(get('globals'))
-    console.log(get('iterationCount'))
-
     const options = {
       apiKey: '?apikey=' + get('postmanApiKey'),
       collection: get('collection'),
@@ -31,16 +28,12 @@ async function init () {
       bail: JSON.parse(get('bail')),
       suppressExitCode: JSON.parse(get('suppressExitCode')),
       reporters: get('reporters').split(','),
-      reporter: JSON.parse(get('reporter')),
+      reporter: JSON.parse(get('reporter') || null),
       color: get('color'),
       sslClientCert: get('sslClientCert'),
       sslClientKey: get('sslClientKey'),
       sslClientPassphrase: get('sslClientPassphrase')
     }
-
-    console.log(options.globals)
-    console.log(get('iterationCount'))
-    console.log(options.iterationCount)
 
     if (!options.apiKey) {
       core.warn('No Postman API key provided.')
