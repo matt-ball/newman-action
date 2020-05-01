@@ -7,65 +7,85 @@ branding:
 inputs:
   apiKey:
     description: 'Postman API key'
-    default: 'postmanApiKey'
+    required: false
   collection:
     description: 'Collection to use'
-    default: 'postman_collection.json'
+    required: true
   environment:
     description: 'Environment to use'
-    default: 'postman_environment.json'
+    required: false
   globals:
     description: 'Globals to use'
+    required: false
   iterationCount:
     description: 'Number of iterations to run on the collection'
+    required: false
     default: 1
   iterationData:
     description: 'Path to CSV or JSON data file'
+    required: false
   folder:
     description: 'Name/ID of folders to run instead of entire collection'
+    required: false
   workingDir:
     description: 'Path to be used as working directory'
+    required: false
+    default: .
   insecureFileRead:
     description: 'Allow reading files outside of working directory'
     default: true
+    required: false
   timeout:
     description: 'Time to wait for the collection run to complete'
     default: Infinity
+    required: false
   timeoutRequest:
     description: 'Time to wait for scripts to return a response'
     default: Infinity
+    required: false
   timeoutScript:
     description: 'Time to wait for scripts to return a response'
     default: Infinity
+    required: false
   delayRequest:
     description: 'Time to wait between subsequent requests'
     default: 0
+    required: false
   ignoreRedirects:
     description: 'Follow 3xx responses'
     default: false
+    required: false
   insecure:
     description: 'Disable SSL verification and allow self-signed SSL'
     default: false
+    required: false
   bail:
     description: 'Stop collection run gracefully on error'
     default: false
+    required: false
   suppressExitCode:
     description: 'Always exit cleanly'
     default: false
+    required: false
   reporters:
     description: 'Reporter to use'
-    default: 'cli'
+    required: false
   reporter:
     description: 'Reporter options'
+    required: false
   color:
     description: 'Modify colored CLI output'
+    required: false
     default: 'auto'
   sslClientCert:
     description: 'Path to public client certificate'
+    required: false
   sslClientKey:
     description: 'Path to secret client key file'
+    required: false
   sslClientPassphrase:
     description: 'Secret client key passphrase'
+    required: false
 runs:
   using: 'node12'
   main: 'index.js'

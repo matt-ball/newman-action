@@ -3,6 +3,12 @@ const newman = require('newman')
 
 init()
 
+function safeParse (value) {
+  try {
+    return JSON.parse(value)
+  } catch (e) {}
+}
+
 async function init () {
   try {
     const get = core.getInput
@@ -13,30 +19,26 @@ async function init () {
       apiKey: '?apikey=' + get('postmanApiKey'),
       collection: get('collection'),
       environment: get('environment'),
-      globals: get('globals'),
+      globals: safeParse(get('globals')),
       iterationCount: Number(get('iterationCount')),
       iterationData: get('iterationData'),
-      folder: get('folder').split(','),
+      folder: get('folder').split(',').filter(v => !!v),
       workingDir: get('workingDir'),
-      insecureFileRead: JSON.parse(get('insecureFileRead')),
+      insecureFileRead: safeParse(get('insecureFileRead')),
       timeout: Number(get('timeout')),
       timeoutRequest: Number(get('timeoutRequest')),
       timeoutScript: Number(get('timeoutScript')),
       delayRequest: Number(get('delayRequest')),
-      ignoreRedirects: JSON.parse(get('ignoreRedirects')),
-      insecure: JSON.parse(get('insecure')),
-      bail: JSON.parse(get('bail')),
-      suppressExitCode: JSON.parse(get('suppressExitCode')),
-      reporters: get('reporters').split(','),
-      reporter: JSON.parse(get('reporter') || null),
+      ignoreRedirects: safeParse(get('ignoreRedirects')),
+      insecure: safeParse(get('insecure')),
+      bail: safeParse(get('bail')),
+      suppressExitCode: safeParse(get('suppressExitCode')),
+      reporters: get('reporters').split(',').filter(v => !!v),
+      reporter: safeParse(get('reporter')),
       color: get('color'),
       sslClientCert: get('sslClientCert'),
       sslClientKey: get('sslClientKey'),
       sslClientPassphrase: get('sslClientPassphrase')
-    }
-
-    if (!options.apiKey) {
-      core.warn('No Postman API key provided.')
     }
 
     if (options.collection.match(idRegex)) {
@@ -47,12 +49,6 @@ async function init () {
       options.environment = `${apiBase}/environments/${options.environment}${options.apiKey}`
     }
 
-    if (options.globals) {
-      try {
-        options.globals = JSON.parse(options.globals)
-      } catch (e) {}
-    }
-
     runNewman(options)
   } catch (error) {
     core.setFailed(error.message)
@@ -61,8 +57,10 @@ async function init () {
 
 function runNewman (options) {
   newman.run(options).on('done', (err, summary) => {
-    if (err || summary.run.failures.length) {
-      core.setFailed('Newman run failed!' + (err || ''))
+    if (err) {
+      core.setFailed(`Newman run errored: ${err}`)
+    } else if (summary.run.failures.length) {
+      core.setFailed(`Newman finished with ${summary.run.failures.length} failures.`)
     }
   })
 }
