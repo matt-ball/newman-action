@@ -1,6 +1,6 @@
 # Newman Action
 
-Allows you to run Postman's headless collction runner, Newman, via a GitHub Action meaning no config of the Newman lib itself.
+Allows you to run Postman's headless collection runner, Newman, via a GitHub Action meaning no config of the Newman lib itself.
 
 ## Getting Started
 
