@@ -61,7 +61,7 @@ async function init () {
 
 function runNewman (options) {
   newman.run(options).on('done', (err, summary) => {
-    if (err || summary.run.failures.length) {
+    if (!options.suppressExitCode && (err || summary.run.failures.length)) {
       core.setFailed('Newman run failed!' + (err || ''))
     }
   })
