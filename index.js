@@ -1,6 +1,7 @@
 const core = require('@actions/core')
 const newman = require('newman')
 
+console.log('0.0.31')
 init()
 
 async function init () {
