@@ -62,6 +62,7 @@ function safeParse (obj) {
   try {
     return JSON.parse(obj)
   } catch (e) {
+    console.log(obj)
     core.warning('Bad object passed in config!')
     return null
   }
