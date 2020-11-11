@@ -305,13 +305,23 @@ var Internet = function (faker) {
    * mac
    *
    * @method faker.internet.mac
+   * @param {string} sep
    */
-  self.mac = function(){
-      var i, mac = "";
+  self.mac = function(sep){
+      var i, 
+        mac = "",
+        validSep = ':';
+
+      // if the client passed in a different separator than `:`, 
+      // we will use it if it is in the list of acceptable separators (dash or no separator)
+      if (['-', ''].indexOf(sep) !== -1) {
+        validSep = sep;
+      } 
+
       for (i=0; i < 12; i++) {
           mac+= faker.random.number(15).toString(16);
           if (i%2==1 && i != 11) {
-              mac+=":";
+              mac+=validSep;
           }
       }
       return mac;
@@ -341,7 +351,7 @@ var Internet = function (faker) {
       * Copyright(c) 2011-2013 Bermi Ferrer <bermi@bermilabs.com>
       * MIT Licensed
       */
-     var consonant, letter, password, vowel;
+     var consonant, letter, vowel;
      letter = /[a-zA-Z]$/;
      vowel = /[aeiouAEIOU]$/;
      consonant = /[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]$/;

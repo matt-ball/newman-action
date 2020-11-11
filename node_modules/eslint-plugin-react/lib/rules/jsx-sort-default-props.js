@@ -8,6 +8,7 @@
 const variableUtil = require('../util/variable');
 const docsUrl = require('../util/docsUrl');
 const propWrapperUtil = require('../util/propWrapper');
+// const propTypesSortUtil = require('../util/propTypesSort');
 
 // ------------------------------------------------------------------------------
 // Rule Definition
@@ -21,6 +22,8 @@ module.exports = {
       recommended: false,
       url: docsUrl('jsx-sort-default-props')
     },
+
+    // fixable: 'code',
 
     schema: [{
       type: 'object',
@@ -78,7 +81,7 @@ module.exports = {
      * @returns {ASTNode|null} Return null if the variable could not be found, ASTNode otherwise.
      */
     function findVariableByName(name) {
-      const variable = variableUtil.variablesInScope(context).find(item => item.name === name);
+      const variable = variableUtil.variablesInScope(context).find((item) => item.name === name);
 
       if (!variable || !variable.defs[0] || !variable.defs[0].node) {
         return null;
@@ -97,6 +100,10 @@ module.exports = {
      * @returns {void}
      */
     function checkSorted(declarations) {
+      // function fix(fixer) {
+      //   return propTypesSortUtil.fixPropTypesSort(fixer, context, declarations, ignoreCase);
+      // }
+
       declarations.reduce((prev, curr, idx, decls) => {
         if (/Spread(?:Property|Element)$/.test(curr.type)) {
           return decls[idx + 1];
@@ -114,6 +121,7 @@ module.exports = {
           context.report({
             node: curr,
             message: 'Default prop types declarations should be sorted alphabetically'
+            // fix
           });
 
           return prev;

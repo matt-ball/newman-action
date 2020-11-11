@@ -9,6 +9,8 @@ declare global {
   type Token = eslint.AST.Token;
   type Fixer = eslint.Rule.RuleFixer;
   type JSXAttribute = ASTNode;
+  type JSXElement = ASTNode;
+  type JSXFragment = ASTNode;
   type JSXSpreadAttribute = ASTNode;
 
   interface Context extends eslint.SourceCode {
@@ -21,9 +23,8 @@ declare global {
     [k in string]: TypeDeclarationBuilder;
   };
 
-  type UnionTypeDefinitionChildren = unknown[];
   type UnionTypeDefinition = {
     type: 'union' | 'shape';
-    children: UnionTypeDefinitionChildren | true;
+    children: unknown[];
   };
 }

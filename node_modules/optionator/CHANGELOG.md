@@ -1,3 +1,10 @@
+# 0.9.0
+- update dependencies, in particular `levn` and `type-check` - this could affect behaviour of argument parsing
+
+# 0.8.3
+- changes dependency from `wordwrap` to `word-wrap` due to license issue
+- update dependencies
+
 # 0.8.2
 - fix bug #18 - detect missing value when flag is last item
 - update dependencies

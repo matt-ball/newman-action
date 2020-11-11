@@ -5,7 +5,6 @@ var net = require('net')
   , http = require('http')
   , https = require('https')
   , events = require('events')
-  , assert = require('assert')
   , util = require('util')
   , Buffer = require('safe-buffer').Buffer
   ;
@@ -162,7 +161,19 @@ TunnelingAgent.prototype.createSocket = function createSocket(options, cb) {
     socket.removeAllListeners()
 
     if (res.statusCode === 200) {
-      assert.equal(head.length, 0)
+      // @note `head` is the buffer for the response sent by the proxy server
+      // after a successful tunnel is established. The RFC says that any
+      // response sent after the successful response headers is to be considered
+      // to be sent from the target server. But handling this edge-case requires
+      // a lot of architecture changes which we're deferring for later.
+      //
+      // RFC: https://tools.ietf.org/html/rfc7231#section-4.3.6
+      //
+      // To prevent assertion error for this case we're commenting out the
+      // following statement:
+      //
+      // assert.equal(head.length, 0)
+
       debug('tunneling connection has established')
       self.sockets[self.sockets.indexOf(placeholder)] = socket
       cb(null, socket)

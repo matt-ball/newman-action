@@ -13,31 +13,47 @@ const linkComponentsUtil = require('../util/linkComponents');
 // ------------------------------------------------------------------------------
 
 function isTargetBlank(attr) {
-  return attr.name &&
-    attr.name.name === 'target' &&
-    attr.value &&
-    attr.value.type === 'Literal' &&
-    attr.value.value.toLowerCase() === '_blank';
+  return attr.name
+    && attr.name.name === 'target'
+    && attr.value
+    && ((
+      attr.value.type === 'Literal'
+      && attr.value.value.toLowerCase() === '_blank'
+    ) || (
+      attr.value.type === 'JSXExpressionContainer'
+      && attr.value.expression
+      && attr.value.expression.value
+      && attr.value.expression.value.toLowerCase() === '_blank'
+    ));
 }
 
 function hasExternalLink(element, linkAttribute) {
-  return element.attributes.some(attr => attr.name &&
-      attr.name.name === linkAttribute &&
-      attr.value.type === 'Literal' &&
-      /^(?:\w+:|\/\/)/.test(attr.value.value));
+  return element.attributes.some((attr) => attr.name
+      && attr.name.name === linkAttribute
+      && attr.value.type === 'Literal'
+      && /^(?:\w+:|\/\/)/.test(attr.value.value));
 }
 
 function hasDynamicLink(element, linkAttribute) {
-  return element.attributes.some(attr => attr.name &&
-    attr.name.name === linkAttribute &&
-    attr.value.type === 'JSXExpressionContainer');
+  return element.attributes.some((attr) => attr.name
+    && attr.name.name === linkAttribute
+    && attr.value.type === 'JSXExpressionContainer');
 }
 
-function hasSecureRel(element) {
+function hasSecureRel(element, allowReferrer) {
   return element.attributes.find((attr) => {
     if (attr.type === 'JSXAttribute' && attr.name.name === 'rel') {
-      const tags = attr.value && attr.value.type === 'Literal' && attr.value.value.toLowerCase().split(' ');
-      return tags && (tags.indexOf('noopener') >= 0 && tags.indexOf('noreferrer') >= 0);
+      const value = attr.value
+        && ((
+          attr.value.type === 'Literal'
+          && attr.value.value
+        ) || (
+          attr.value.type === 'JSXExpressionContainer'
+          && attr.value.expression
+          && attr.value.expression.value
+        ));
+      const tags = value && value.toLowerCase && value.toLowerCase().split(' ');
+      return tags && (allowReferrer ? tags.indexOf('noopener') >= 0 : tags.indexOf('noreferrer') >= 0);
     }
     return false;
   });
@@ -46,7 +62,7 @@ function hasSecureRel(element) {
 module.exports = {
   meta: {
     docs: {
-      description: 'Forbid target="_blank" attribute without rel="noopener noreferrer"',
+      description: 'Forbid `target="_blank"` attribute without `rel="noreferrer"`',
       category: 'Best Practices',
       recommended: true,
       url: docsUrl('jsx-no-target-blank')
@@ -54,6 +70,9 @@ module.exports = {
     schema: [{
       type: 'object',
       properties: {
+        allowReferrer: {
+          type: 'boolean'
+        },
         enforceDynamicLinks: {
           enum: ['always', 'never']
         }
@@ -64,12 +83,17 @@ module.exports = {
 
   create(context) {
     const configuration = context.options[0] || {};
+    const allowReferrer = configuration.allowReferrer || false;
     const enforceDynamicLinks = configuration.enforceDynamicLinks || 'always';
     const components = linkComponentsUtil.getLinkComponents(context);
 
     return {
       JSXAttribute(node) {
-        if (!components.has(node.parent.name.name) || !isTargetBlank(node) || hasSecureRel(node.parent)) {
+        if (
+          !components.has(node.parent.name.name)
+          || !isTargetBlank(node)
+          || hasSecureRel(node.parent, allowReferrer)
+        ) {
           return;
         }
 
@@ -78,8 +102,8 @@ module.exports = {
         if (hasExternalLink(node.parent, linkAttribute) || (enforceDynamicLinks === 'always' && hasDynamicLink(node.parent, linkAttribute))) {
           context.report({
             node,
-            message: 'Using target="_blank" without rel="noopener noreferrer" ' +
-              'is a security risk: see https://mathiasbynens.github.io/rel-noopener'
+            message: 'Using target="_blank" without rel="noreferrer" '
+              + 'is a security risk: see https://html.spec.whatwg.org/multipage/links.html#link-type-noopener'
           });
         }
       }

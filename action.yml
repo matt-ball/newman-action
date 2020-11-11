@@ -7,18 +7,15 @@ branding:
 inputs:
   apiKey:
     description: 'Postman API key'
-    default: 'postmanApiKey'
   collection:
     description: 'Collection to use'
-    default: 'postman_collection.json'
+    required: true
   environment:
     description: 'Environment to use'
-    default: 'postman_environment.json'
   globals:
     description: 'Globals to use'
   iterationCount:
     description: 'Number of iterations to run on the collection'
-    default: 1
   iterationData:
     description: 'Path to CSV or JSON data file'
   folder:
@@ -27,45 +24,42 @@ inputs:
     description: 'Path to be used as working directory'
   insecureFileRead:
     description: 'Allow reading files outside of working directory'
-    default: true
   timeout:
     description: 'Time to wait for the collection run to complete'
-    default: Infinity
   timeoutRequest:
     description: 'Time to wait for scripts to return a response'
-    default: Infinity
   timeoutScript:
     description: 'Time to wait for scripts to return a response'
-    default: Infinity
   delayRequest:
     description: 'Time to wait between subsequent requests'
-    default: 0
   ignoreRedirects:
     description: 'Follow 3xx responses'
-    default: false
   insecure:
     description: 'Disable SSL verification and allow self-signed SSL'
-    default: false
   bail:
     description: 'Stop collection run gracefully on error'
-    default: false
   suppressExitCode:
     description: 'Always exit cleanly'
-    default: false
   reporters:
     description: 'Reporter to use'
-    default: 'cli'
   reporter:
     description: 'Reporter options'
   color:
     description: 'Modify colored CLI output'
-    default: 'auto'
   sslClientCert:
     description: 'Path to public client certificate'
   sslClientKey:
     description: 'Path to secret client key file'
   sslClientPassphrase:
     description: 'Secret client key passphrase'
+  sslClientCertList:
+    description: 'The path to the client certificate configuration list file.'
+  sslExtraCaCerts:
+    description: 'The path to the file, that holds one or more trusted CA certificates in PEM format.'
+  requestAgents:
+    description: 'Specify the custom requesting agents to be used when performing HTTP and HTTPS requests respectively.'
+  cookieJar:
+    description: 'Pass a CookieJar file path as string to this property that will be deserialized using tough-cookie.'
 runs:
   using: 'node12'
   main: 'index.js'

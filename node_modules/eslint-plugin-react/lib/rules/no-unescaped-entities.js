@@ -99,7 +99,7 @@ module.exports = {
             } else if (c === entities[j].char) {
               context.report({
                 loc: {line: i, column: start + index},
-                message: `\`${entities[j].char}\` can be escaped with ${entities[j].alternatives.map(alt => `\`${alt}\``).join(', ')}.`,
+                message: `\`${entities[j].char}\` can be escaped with ${entities[j].alternatives.map((alt) => `\`${alt}\``).join(', ')}.`,
                 node
               });
             }
@@ -109,7 +109,7 @@ module.exports = {
     }
 
     return {
-      'Literal, JSXText': function (node) {
+      'Literal, JSXText'(node) {
         if (jsxUtil.isJSX(node.parent)) {
           reportInvalidEntity(node);
         }

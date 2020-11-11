@@ -98,7 +98,7 @@ _.assign(Builders.prototype, {
      * Normalizes v1 collection events.
      *
      * @param {Object} entityV1 - The v1 entity to be normalized.
-     * @returns {Array} - The normalized events.
+     * @returns {Array|null} - The normalized events.
      */
     events: function (entityV1) {
         if (!entityV1) { return; }
@@ -124,6 +124,9 @@ _.assign(Builders.prototype, {
         entityV1.tests && events.push(script(entityV1, 'test', 'tests'));
 
         if (events.length) { return events; }
+
+        // retain `null` events
+        if (entityV1.events === null) { return null; }
     },
 
     /**
@@ -291,7 +294,7 @@ _.assign(Builders.prototype, {
         else { delete requestV1.auth; }
 
         events = self.events(requestV1);
-        if (events) {
+        if (events || events === null) {
             requestV1.events = events;
         }
         else {
@@ -339,7 +342,7 @@ _.assign(Builders.prototype, {
 
         // prune
         ['preRequestScript', 'tests'].forEach(function (script) {
-            if (_.has(requestV1, script) && !(requestV1[script] || (requestV1[script] === null))) {
+            if (_.has(requestV1, script) && !requestV1[script] && requestV1[script] !== null) {
                 delete requestV1[script];
             }
         });

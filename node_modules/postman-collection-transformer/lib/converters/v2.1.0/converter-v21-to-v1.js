@@ -107,6 +107,7 @@ module.exports = {
             (auth = builders.auth(collection, authOptions)) && (newCollection.auth = auth);
             (events = builders.events(collection)) && (newCollection.events = events);
             (variables = builders.variables(collection, varOpts)) && (newCollection.variables = variables);
+            util.addProtocolProfileBehavior(collection, newCollection);
 
             units.forEach(function (unit) {
                 newCollection[unit] = builders[unit](collection);

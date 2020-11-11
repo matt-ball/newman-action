@@ -206,6 +206,31 @@ _.assign(Builders.prototype, {
     },
 
     /**
+     * Creates options for body from v2 format.
+     *
+     * @param {Object} item - The v2 request to derive information form.
+     * @returns {Object} - The converted body options.
+     */
+    dataOptions: function (item) {
+        var options = _.get(item, 'request.body.options'),
+            bodyOptions = {},
+            mode;
+
+        if (!options) {
+            return;
+        }
+
+        // Convert v2 mode to v1 mode
+        for (mode in v2Common.modeMap) {
+            if (options[mode]) {
+                bodyOptions[v2Common.modeMap[mode]] = options[mode];
+            }
+        }
+
+        return bodyOptions;
+    },
+
+    /**
      * Creates an object of path-variables and their values from a V2 item
      *
      * @param {Object} item - The wrapper object containing path variable information.
@@ -391,7 +416,7 @@ _.assign(Builders.prototype, {
         if (!item) { return; }
 
         var units = ['headers', 'dataMode', 'data', 'rawModeData', 'graphqlModeData',
-                'pathVariables', 'tests', 'preRequestScript', 'url'],
+                'pathVariables', 'tests', 'preRequestScript', 'url', 'dataOptions'],
             self = this,
             request,
             description,
@@ -599,6 +624,7 @@ _.assign(Builders.prototype, {
             ((auth && auth.type) || (auth === null)) && (result.auth = auth);
             events && events.length && (result.events = events);
             variables && variables.length && (result.variables = variables);
+            util.addProtocolProfileBehavior(folder, result);
 
             // Prevent empty folder descriptions from showing up in the result, keeps collections clean.
             if (description) { result.description = description; }
@@ -723,6 +749,7 @@ module.exports = {
             (auth = builders.auth(collection, authOptions)) && (newCollection.auth = auth);
             (events = builders.events(collection)) && (newCollection.events = events);
             (variables = builders.variables(collection, varOpts)) && (newCollection.variables = variables);
+            util.addProtocolProfileBehavior(collection, newCollection);
 
             units.forEach(function (unit) {
                 newCollection[unit] = builders[unit](collection);

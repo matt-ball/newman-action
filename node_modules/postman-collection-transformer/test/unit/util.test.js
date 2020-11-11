@@ -14,8 +14,16 @@ describe('util', function () {
                 retainIds: true,
                 fallback: { values: [{ value: {}, disabled: 1 }] }
             })[0]).to.deep.include({
-                type: 'any',
                 disabled: true
+            });
+        });
+
+        it('should handle legacy `text` type', function () {
+            expect(util.handleVars({}, {
+                retainIds: true,
+                fallback: { values: [{ value: 'foo', type: 'text' }] }
+            })[0]).to.deep.include({
+                type: 'string'
             });
         });
     });

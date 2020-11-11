@@ -6,33 +6,38 @@ init()
 async function init () {
   try {
     const get = core.getInput
-    const apiBase = 'https://api.getpostman.com'
+    const required = { required: true }
+    const apiBase = 'https://api.postman.com'
     const idRegex = /^[0-9]{7}-\w{8}-\w{4}-\w{4}-\w{4}-\w{12}$/
 
     const options = {
-      apiKey: '?apikey=' + get('postmanApiKey'),
-      collection: get('collection'),
+      apiKey: '?apikey=' + get('apiKey'),
+      collection: get('collection', required),
       environment: get('environment'),
       globals: get('globals'),
       iterationCount: Number(get('iterationCount')),
       iterationData: get('iterationData'),
-      folder: get('folder').split(','),
+      folder: split(get('folder')),
       workingDir: get('workingDir'),
-      insecureFileRead: JSON.parse(get('insecureFileRead')),
+      insecureFileRead: safeParse(get('insecureFileRead')),
       timeout: Number(get('timeout')),
       timeoutRequest: Number(get('timeoutRequest')),
       timeoutScript: Number(get('timeoutScript')),
       delayRequest: Number(get('delayRequest')),
-      ignoreRedirects: JSON.parse(get('ignoreRedirects')),
-      insecure: JSON.parse(get('insecure')),
-      bail: JSON.parse(get('bail')),
-      suppressExitCode: JSON.parse(get('suppressExitCode')),
-      reporters: get('reporters').split(','),
-      reporter: JSON.parse(get('reporter') || null),
+      ignoreRedirects: safeParse(get('ignoreRedirects')),
+      insecure: safeParse(get('insecure')),
+      bail: safeParse(get('bail')), // check
+      suppressExitCode: safeParse(get('suppressExitCode')),
+      reporters: split(get('reporters')),
+      reporter: safeParse(get('reporter')),
       color: get('color'),
       sslClientCert: get('sslClientCert'),
       sslClientKey: get('sslClientKey'),
-      sslClientPassphrase: get('sslClientPassphrase')
+      sslClientPassphrase: get('sslClientPassphrase'),
+      sslClientCertList: split(get('sslClientCertList')),
+      sslExtraCaCerts: get('sslExtraCaCerts'),
+      requestAgents: safeParse(get('requestAgents')),
+      cookieJar: get('cookieJar')
     }
 
     if (!options.apiKey) {
@@ -47,21 +52,28 @@ async function init () {
       options.environment = `${apiBase}/environments/${options.environment}${options.apiKey}`
     }
 
-    if (options.globals) {
-      try {
-        options.globals = JSON.parse(options.globals)
-      } catch (e) {}
-    }
-
     runNewman(options)
   } catch (error) {
     core.setFailed(error.message)
   }
 }
 
+function safeParse (obj) {
+  try {
+    return JSON.parse(obj)
+  } catch (e) {
+    core.warn('Bad object passed in config!')
+    return null
+  }
+}
+
+function split (str) {
+  return str.split(',')
+}
+
 function runNewman (options) {
   newman.run(options).on('done', (err, summary) => {
-    if (err || summary.run.failures.length) {
+    if (!options.suppressExitCode && (err || summary.run.failures.length)) {
       core.setFailed('Newman run failed!' + (err || ''))
     }
   })

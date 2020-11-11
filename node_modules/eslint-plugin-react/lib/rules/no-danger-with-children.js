@@ -6,6 +6,7 @@
 'use strict';
 
 const variableUtil = require('../util/variable');
+const jsxUtil = require('../util/jsx');
 const docsUrl = require('../util/docsUrl');
 
 // ------------------------------------------------------------------------------
@@ -23,13 +24,14 @@ module.exports = {
   },
   create(context) {
     function findSpreadVariable(name) {
-      return variableUtil.variablesInScope(context).find(item => item.name === name);
+      return variableUtil.variablesInScope(context).find((item) => item.name === name);
     }
     /**
      * Takes a ObjectExpression and returns the value of the prop if it has it
      * @param {object} node - ObjectExpression node
      * @param {string} propName - name of the prop to look for
      * @param {string[]} seenProps
+     * @returns {object | boolean}
      */
     function findObjectProp(node, propName, seenProps) {
       if (!node.properties) {
@@ -57,6 +59,7 @@ module.exports = {
      * Takes a JSXElement and returns the value of the prop if it has it
      * @param {object} node - JSXElement node
      * @param {string} propName - name of the prop to look for
+     * @returns {object | boolean}
      */
     function findJsxProp(node, propName) {
       const attributes = node.openingElement.attributes;
@@ -79,7 +82,7 @@ module.exports = {
     function isLineBreak(node) {
       const isLiteral = node.type === 'Literal' || node.type === 'JSXText';
       const isMultiline = node.loc.start.line !== node.loc.end.line;
-      const isWhiteSpaces = /^\s*$/.test(node.value);
+      const isWhiteSpaces = jsxUtil.isWhiteSpaces(node.value);
 
       return isLiteral && isMultiline && isWhiteSpaces;
     }
@@ -95,9 +98,9 @@ module.exports = {
         }
 
         if (
-          node.openingElement.attributes &&
-          hasChildren &&
-          findJsxProp(node, 'dangerouslySetInnerHTML')
+          node.openingElement.attributes
+          && hasChildren
+          && findJsxProp(node, 'dangerouslySetInnerHTML')
         ) {
           context.report({
             node,
@@ -107,17 +110,17 @@ module.exports = {
       },
       CallExpression(node) {
         if (
-          node.callee &&
-          node.callee.type === 'MemberExpression' &&
-          node.callee.property.name === 'createElement' &&
-          node.arguments.length > 1
+          node.callee
+          && node.callee.type === 'MemberExpression'
+          && node.callee.property.name === 'createElement'
+          && node.arguments.length > 1
         ) {
           let hasChildren = false;
 
           let props = node.arguments[1];
 
           if (props.type === 'Identifier') {
-            const variable = variableUtil.variablesInScope(context).find(item => item.name === props.name);
+            const variable = variableUtil.variablesInScope(context).find((item) => item.name === props.name);
             if (variable && variable.defs.length && variable.defs[0].node.init) {
               props = variable.defs[0].node.init;
             }

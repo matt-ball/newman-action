@@ -68,10 +68,10 @@ module.exports = {
                 var result = {
                     id: (noDefaults || item.id) ? item.id : self.uid(),
                     key: item.key || item.id,
-                    value: item.value,
-                    type: (item.type === 'text' ? 'string' : item.type) || self.typeMap[typeof item.value] || 'any'
+                    value: item.value
                 };
 
+                item.type && (result.type = item.type === 'text' ? 'string' : item.type);
                 item.disabled && (result.disabled = true);
 
                 if (item.description) { result.description = item.description; }

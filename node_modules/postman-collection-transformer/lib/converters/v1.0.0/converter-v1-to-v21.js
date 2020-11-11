@@ -143,6 +143,7 @@ module.exports = {
             (auth = builders.auth(collection, authOptions)) && (newCollection.auth = auth);
             (event = builders.event(collection)) && (newCollection.event = event);
             (variable = builders.variable(collection, varOpts)) && (newCollection.variable = variable);
+            util.addProtocolProfileBehavior(collection, newCollection);
         }
         catch (e) {
             if (callback) { return callback(e); }
