@@ -1,7 +1,6 @@
 const core = require('@actions/core')
 const newman = require('newman')
 
-console.log('0.0.31')
 init()
 
 async function init () {
@@ -42,7 +41,7 @@ async function init () {
     }
 
     if (!options.apiKey) {
-      core.warn('No Postman API key provided.')
+      core.warning('No Postman API key provided.')
     }
 
     if (options.collection.match(idRegex)) {
@@ -63,7 +62,7 @@ function safeParse (obj) {
   try {
     return JSON.parse(obj)
   } catch (e) {
-    core.warn('Bad object passed in config!')
+    core.warning('Bad object passed in config!')
     return null
   }
 }
