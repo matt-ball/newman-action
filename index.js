@@ -26,7 +26,7 @@ async function init () {
       delayRequest: Number(get('delayRequest')),
       ignoreRedirects: safeParse(get('ignoreRedirects')),
       insecure: safeParse(get('insecure')),
-      bail: safeParse(get('bail')), // check
+      bail: safeParse(get('bail')),
       suppressExitCode: safeParse(get('suppressExitCode')),
       reporters: split(get('reporters')),
       reporter: safeParse(get('reporter')),
@@ -59,13 +59,15 @@ async function init () {
 }
 
 function safeParse (obj) {
-  try {
-    return JSON.parse(obj)
-  } catch (e) {
-    console.log(obj)
-    core.warning('Bad object passed in config!')
-    return null
+  if (obj) {
+    try {
+      return JSON.parse(obj)
+    } catch (e) {
+      core.warning('Bad object passed in config!')
+    }
   }
+
+  return null
 }
 
 function split (str) {
