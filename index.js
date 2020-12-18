@@ -8,7 +8,7 @@ async function init () {
     const get = core.getInput
     const required = { required: true }
     const apiBase = 'https://api.postman.com'
-    const idRegex = /^[0-9]{7}-\w{8}-\w{4}-\w{4}-\w{4}-\w{12}$/
+    const idRegex = /^[0-9]{7,}-\w{8}-\w{4}-\w{4}-\w{4}-\w{12}$/
 
     const options = {
       apiKey: '?apikey=' + get('apiKey'),

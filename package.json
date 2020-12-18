@@ -1,6 +1,6 @@
 {
   "name": "newman-action",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Run Postman collections with Newman as a GitHub Action",
   "main": "index.js",
   "scripts": {
