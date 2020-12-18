@@ -1,1 +1,0 @@
-../postman-collection-transformer/bin/transform-collection.js
