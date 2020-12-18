@@ -1,11 +1,12 @@
 {
   "name": "newman-action",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Run Postman collections with Newman as a GitHub Action",
-  "main": "index.js",
+  "main": "lib/main.js",
   "scripts": {
     "build": "tsc",
-    "test": "jest"
+    "test": "jest",
+    "package": "ncc build --source-map --license licenses.txt"
   },
   "repository": {
     "type": "git",
@@ -17,12 +18,34 @@
     "newman"
   ],
   "author": "Matt Ball",
+  "contributors": [
+    {
+      "name": "Darren Cunningham",
+      "email": "cynicaljoy@gmail.com",
+      "url": "https://github.com/cynicaljoy"
+    }
+  ],
   "license": "Apache-2.0",
   "dependencies": {
     "@actions/core": "^1.2.6",
     "newman": "^5.2.1"
   },
   "devDependencies": {
-    "standard": "^16.0.1"
+    "@types/jest": "^26.0.15",
+    "@types/newman": "^5.1.1",
+    "@types/node": "^14.14.9",
+    "@typescript-eslint/parser": "^4.8.1",
+    "@vercel/ncc": "^0.25.1",
+    "eslint": "^7.13.0",
+    "eslint-plugin-github": "^4.1.1",
+    "eslint-plugin-jest": "^23.20.0",
+    "jest": "^24.9.0",
+    "jest-circus": "^26.4.2",
+    "js-yaml": "^3.14.0",
+    "postman-collection": "^3.6.4",
+    "prettier": "2.1.1",
+    "standard": "^16.0.1",
+    "ts-jest": "^24.3.0",
+    "typescript": "^4.0.2"
   }
 }

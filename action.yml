@@ -7,60 +7,86 @@ branding:
 inputs:
   apiKey:
     description: 'Postman API key'
+    required: true
   collection:
     description: 'Collection to use'
     required: true
   environment:
     description: 'Environment to use'
+    required: false
   globals:
     description: 'Globals to use'
+    required: false
   iterationCount:
     description: 'Number of iterations to run on the collection'
+    required: false
   iterationData:
     description: 'Path to CSV or JSON data file'
+    required: false
   folder:
     description: 'Name/ID of folders to run instead of entire collection'
+    required: false
   workingDir:
     description: 'Path to be used as working directory'
+    required: false
   insecureFileRead:
     description: 'Allow reading files outside of working directory'
+    required: false
   timeout:
     description: 'Time to wait for the collection run to complete'
+    required: false
   timeoutRequest:
     description: 'Time to wait for scripts to return a response'
+    required: false
   timeoutScript:
     description: 'Time to wait for scripts to return a response'
+    required: false
   delayRequest:
     description: 'Time to wait between subsequent requests'
+    required: false
   ignoreRedirects:
     description: 'Follow 3xx responses'
+    required: false
   insecure:
     description: 'Disable SSL verification and allow self-signed SSL'
+    required: false
   bail:
     description: 'Stop collection run gracefully on error'
+    required: false
   suppressExitCode:
     description: 'Always exit cleanly'
+    required: false
   reporters:
     description: 'Reporter to use'
+    required: false
     default: 'cli'
   reporter:
     description: 'Reporter options'
+    required: false
   color:
     description: 'Modify colored CLI output'
+    required: false
   sslClientCert:
     description: 'Path to public client certificate'
+    required: false
   sslClientKey:
     description: 'Path to secret client key file'
+    required: false
   sslClientPassphrase:
     description: 'Secret client key passphrase'
+    required: false
   sslClientCertList:
     description: 'The path to the client certificate configuration list file.'
+    required: false
   sslExtraCaCerts:
     description: 'The path to the file, that holds one or more trusted CA certificates in PEM format.'
+    required: false
   requestAgents:
     description: 'Specify the custom requesting agents to be used when performing HTTP and HTTPS requests respectively.'
+    required: false
   cookieJar:
     description: 'Pass a CookieJar file path as string to this property that will be deserialized using tough-cookie.'
+    required: false
 runs:
   using: 'node12'
-  main: 'index.js'
+  main: 'dist/index.js'

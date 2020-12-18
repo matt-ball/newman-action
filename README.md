@@ -7,6 +7,7 @@ Allows you to run Postman's headless collection runner, Newman, via a GitHub Act
 This action supports multiple ways of retrieving your Postman collections/environments.
 
 ### Local files
+
 If you've exported your collection and/or environment to your repo, provide the relative path to where the file sits in your repo (default: `postman_collection.json` / `postman_environment.json`).
 
 ```
@@ -15,9 +16,10 @@ If you've exported your collection and/or environment to your repo, provide the 
   with:
     collection: postman_collection.json
     environment: postman_environment.json
-```          
+```
 
 ### Via URL
+
 If you're collection and/or environment is sitting at a URL accessible to your GitHub action, you can include that directly.
 
 ```
@@ -29,13 +31,14 @@ If you're collection and/or environment is sitting at a URL accessible to your G
 ```
 
 ### Via Postman API
+
 The latest version of your collection and/or environment is available through [Postman's API](https://docs.api.getpostman.com/?version=latest). The API docs contain endpoints that will allow you to retrieve the required IDs. Passing these IDs along with your Postman API key will run Newman in this method. See [Creating and using secrets](https://docs.github.com/en/free-pro-team@latest/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository) for how to add your Postman API to GitHub securely.
 
 ```
 - uses: actions/checkout@master
 - uses: matt-ball/newman-action@master
   with:
-    postmanApiKey: ${{ secrets.postmanApiKey }}
+    apiKey: ${{ secrets.postmanApiKey }}
     collection: 5922408-c22ef764-b464-424c-8702-750343478723
     environment: 5922408-228c7edd-fc15-4f68-9665-a35d7df6945b
 ```
