@@ -35,7 +35,7 @@ The latest version of your collection and/or environment is available through [P
 - uses: actions/checkout@master
 - uses: matt-ball/newman-action@master
   with:
-    postmanApiKey: ${{ secrets.postmanApiKey }}
+    apiKey: ${{ secrets.postmanApiKey }}
     collection: 5922408-c22ef764-b464-424c-8702-750343478723
     environment: 5922408-228c7edd-fc15-4f68-9665-a35d7df6945b
 ```
