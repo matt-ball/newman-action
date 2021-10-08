@@ -75,7 +75,8 @@ function split (str) {
 }
 
 function runNewman (options) {
-  console.log(options)
+  core.debug('options')
+  core.debug(options)
   newman.run(options)
     .on('beforeRequest', (err, args) => {
       console.log(err)
@@ -84,6 +85,9 @@ function runNewman (options) {
       console.log(err)
     })
     .on('done', (err, summary) => {
+      core.debug('done')
+      core.debug(err)
+      core.debug(summary.err)
       console.log(err)
       console.log(summary.error)
       if (!options.suppressExitCode && (err || summary.run.failures.length)) {
