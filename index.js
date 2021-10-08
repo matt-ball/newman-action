@@ -75,9 +75,19 @@ function split (str) {
 }
 
 function runNewman (options) {
-  newman.run(options).on('done', (err, summary) => {
-    if (!options.suppressExitCode && (err || summary.run.failures.length)) {
-      core.setFailed('Newman run failed!' + (err || ''))
-    }
-  })
+  console.log(options)
+  newman.run(options)
+    .on('beforeRequest', (err, args) => {
+      console.log(err)
+    })
+    .on('request', (err, args) => {
+      console.log(err)
+    })
+    .on('done', (err, summary) => {
+      console.log(err)
+      console.log(summary.error)
+      if (!options.suppressExitCode && (err || summary.run.failures.length)) {
+        core.setFailed('Newman run failed!' + (err || ''))
+      }
+    })
 }
