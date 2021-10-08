@@ -5,25 +5,24 @@ init()
 
 async function init () {
   try {
-    const get = core.getInput
     const required = { required: true }
     const apiBase = 'https://api.postman.com'
     const idRegex = /^[0-9]{7,}-\w{8}-\w{4}-\w{4}-\w{4}-\w{12}$/
 
     const options = {
-      apiKey: '?apikey=' + get('apiKey'),
+      apiKey: get('apiKey'),
       collection: get('collection', required),
       environment: get('environment'),
       globals: get('globals'),
-      iterationCount: Number(get('iterationCount')),
+      iterationCount: num(get('iterationCount')),
       iterationData: get('iterationData'),
       folder: split(get('folder')),
       workingDir: get('workingDir'),
       insecureFileRead: safeParse(get('insecureFileRead')),
-      timeout: Number(get('timeout')),
-      timeoutRequest: Number(get('timeoutRequest')),
-      timeoutScript: Number(get('timeoutScript')),
-      delayRequest: Number(get('delayRequest')),
+      timeout: num(get('timeout')),
+      timeoutRequest: num(get('timeoutRequest')),
+      timeoutScript: num(get('timeoutScript')),
+      delayRequest: num(get('delayRequest')),
       ignoreRedirects: safeParse(get('ignoreRedirects')),
       insecure: safeParse(get('insecure')),
       bail: safeParse(get('bail')),
@@ -40,22 +39,29 @@ async function init () {
       cookieJar: get('cookieJar')
     }
 
-    if (!options.apiKey) {
-      core.warning('No Postman API key provided.')
-    }
-
     if (options.collection.match(idRegex)) {
-      options.collection = `${apiBase}/collections/${options.collection}${options.apiKey}`
+      if (!options.apiKey) {
+        core.setFailed('No Postman API key provided for collection retrieval.')
+      }
+      options.collection = `${apiBase}/collections/${options.collection}?apikey=${options.apiKey}`
     }
 
     if (options.environment.match(idRegex)) {
-      options.environment = `${apiBase}/environments/${options.environment}${options.apiKey}`
+      if (!options.apiKey) {
+        core.setFailed('No Postman API key provided for environment retrieval.')
+      }
+      options.environment = `${apiBase}/environments/${options.environment}?apikey=${options.apiKey}`
     }
 
-    runNewman(options)
+    runNewman(removeEmpty(options))
   } catch (error) {
     core.setFailed(error.message)
   }
+}
+
+function get (key, opts) {
+  const val = core.getInput(key, opts)
+  return val !== '' ? val : null
 }
 
 function safeParse (obj) {
@@ -70,15 +76,26 @@ function safeParse (obj) {
   return null
 }
 
+function num (i) {
+  if (i) {
+    return Number(i)
+  }
+
+  return i
+}
+
 function split (str) {
-  return str.split(',')
+  return str ? str.split(',') : null
+}
+
+function removeEmpty (obj) {
+  return Object.entries(obj)
+    .filter(([_, v]) => v != null)
+    .reduce((acc, [k, v]) => ({ ...acc, [k]: v }), {})
 }
 
 function runNewman (options) {
-  console.log('options')
-  console.log(options)
   newman.run(options).on('done', (err, summary) => {
-    console.log(err)
     if (!options.suppressExitCode && (err || summary.run.failures.length)) {
       core.setFailed('Newman run failed!' + (err || ''))
     }
