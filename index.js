@@ -10,7 +10,8 @@ async function init () {
 
     const options = {
       collection: get('collection', required),
-      environment: get('environment')
+      environment: get('environment'),
+      reporters: 'cli'
     }
 
     runNewman(options)
