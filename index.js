@@ -13,10 +13,12 @@ async function init () {
       apiKey: get('apiKey'),
       collection: get('collection', required),
       environment: get('environment'),
+      envVar: safeParse(get('envVar')),
       globals: get('globals'),
+      globalVar: safeParse(get('globalVar')),
       iterationCount: num(get('iterationCount')),
       iterationData: get('iterationData'),
-      folder: split(get('folder')),
+      folder: safeParse(get('folder')),
       workingDir: get('workingDir'),
       insecureFileRead: safeParse(get('insecureFileRead')),
       timeout: num(get('timeout')),
@@ -27,13 +29,13 @@ async function init () {
       insecure: safeParse(get('insecure')),
       bail: safeParse(get('bail')),
       suppressExitCode: safeParse(get('suppressExitCode')),
-      reporters: split(get('reporters')),
+      reporters: safeParse(get('reporters')),
       reporter: safeParse(get('reporter')),
       color: get('color'),
       sslClientCert: get('sslClientCert'),
       sslClientKey: get('sslClientKey'),
       sslClientPassphrase: get('sslClientPassphrase'),
-      sslClientCertList: split(get('sslClientCertList')),
+      sslClientCertList: safeParse(get('sslClientCertList')),
       sslExtraCaCerts: get('sslExtraCaCerts'),
       requestAgents: safeParse(get('requestAgents')),
       cookieJar: get('cookieJar')
@@ -84,10 +86,6 @@ function num (i) {
   return i
 }
 
-function split (str) {
-  return str ? str.split(',') : null
-}
-
 function removeEmpty (obj) {
   return Object.entries(obj)
     .filter(([_, v]) => v != null)
@@ -95,9 +93,11 @@ function removeEmpty (obj) {
 }
 
 function runNewman (options) {
-  newman.run(options).on('done', (err, summary) => {
+  newman.run(options, (err) => {
+    core.setFailed('Newman run failed! ' + (err || ''))
+  }).on('done', (err, summary) => {
     if (!options.suppressExitCode && (err || summary.run.failures.length)) {
-      core.setFailed('Newman run failed!' + (err || ''))
+      core.setFailed('Newman run failed! ' + (err || ''))
     }
   })
 }
