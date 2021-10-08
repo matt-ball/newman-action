@@ -46,7 +46,7 @@ inputs:
     description: 'Always exit cleanly'
   reporters:
     description: 'Reporter to use'
-    default: 'cli'
+    default: '["cli"]'
   reporter:
     description: 'Reporter options'
   color:

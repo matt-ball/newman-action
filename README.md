@@ -73,6 +73,7 @@ As well as `apiKey`, `collection`, and `environment`, all other Newman settings 
 Note that:
 - GitHub Actions only supports `string`, `number` and `boolean` types. For fields that require objects/arrays, you will need to stringify them appropriately.
 - `environment` and `globals` are only supported as a `string` in this Action. They cannot be passed stringified objects.
+- `reporters` is only supported as a stringified object.
 
 The following example demonstrates these notes in practice:
 
