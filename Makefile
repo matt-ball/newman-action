@@ -8,3 +8,5 @@ bootstrap:
 lint:
 	$(BIN)/standard
 
+compile:
+	ncc build index.js --license licenses.txt
