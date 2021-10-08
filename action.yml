@@ -12,8 +12,12 @@ inputs:
     required: true
   environment:
     description: 'Environment to use'
+  envVar:
+    description: 'Environment variables'
   globals:
     description: 'Globals to use'
+  globalVar:
+    description: 'Global variables'
   iterationCount:
     description: 'Number of iterations to run on the collection'
   iterationData:

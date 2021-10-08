@@ -69,3 +69,20 @@ See [Workflow syntax for GitHub Actions](https://help.github.com/en/articles/wor
 ## Other settings
 
 As well as `apiKey`, `collection`, and `environment`, all other Newman settings are supported. You can find a full list [on the Newman docs](https://github.com/postmanlabs/newman#api-reference). This action uses the Node module under the hood, so ensure you are reading the API reference rather than the command line options. Alternatively, you can see the available options in `action.yml` in this repo.
+
+Note that:
+- GitHub Actions only supports `string`, `number` and `boolean` types. For fields that require objects/arrays, you will need to stringify them appropriately.
+- `environment` and `globals` are only supported as a `string` in this Action. They cannot be passed stringified objects.
+
+The following example demonstrates these notes in practice:
+
+```
+- uses: actions/checkout@master
+- uses: matt-ball/newman-action@master
+  with:
+    collection: postman_collection.json
+    environment: postman_environment.json
+    reporters: '["emojitrain"]'
+    delayRequest: 5000
+    envVar: '[{ "key": "url", "value": "http://localhost:3000" }]'
+```
