@@ -94,7 +94,9 @@ function removeEmpty (obj) {
 
 function runNewman (options) {
   newman.run(options, (err) => {
-    core.setFailed('Newman run failed! ' + (err || ''))
+    if (err) {
+      core.setFailed('Newman run failed! ' + (err || ''))
+    }
   }).on('done', (err, summary) => {
     if (!options.suppressExitCode && (err || summary.run.failures.length)) {
       core.setFailed('Newman run failed! ' + (err || ''))
