@@ -48,7 +48,7 @@ async function init () {
       options.collection = `${apiBase}/collections/${options.collection}?apikey=${options.apiKey}`
     }
 
-    if (options.environment.match(idRegex)) {
+    if (options.environment && options.environment.match(idRegex)) {
       if (!options.apiKey) {
         core.setFailed('No Postman API key provided for environment retrieval.')
       }
