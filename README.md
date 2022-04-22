@@ -29,7 +29,9 @@ If you're collection and/or environment is sitting at a URL accessible to your G
 ```
 
 ### Via Postman API
-The latest version of your collection and/or environment is available through [Postman's API](https://docs.api.getpostman.com/?version=latest). The API docs contain endpoints that will allow you to retrieve the required IDs. Passing these IDs along with your Postman API key will run Newman in this method. See [Creating and using secrets](https://docs.github.com/en/free-pro-team@latest/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository) for how to add your Postman API to GitHub securely.
+The latest version of your collection and/or environment is available through [Postman's API](https://docs.api.getpostman.com/?version=latest). The API docs contain endpoints that will allow you to retrieve the required UIDs. Note the distinction between UID and ID. The Postman API will return responses with `id` and `uid` fields. You'll want the `uid` value, not the `id` value.
+
+Passing these UIDs along with your Postman API key will run Newman in this method. See [Creating and using secrets](https://docs.github.com/en/free-pro-team@latest/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository) for how to add your Postman API to GitHub securely.
 
 ```
 - uses: actions/checkout@master
