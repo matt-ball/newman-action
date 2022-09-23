@@ -1,3 +1,9 @@
+# Notice
+
+This Action is not an official Postman release. As of Postman v10, Postman will now automatically create a configuration for GitHub Actions. This is the recommended approach. For more information, please follow the below link:
+
+https://learning.postman.com/docs/integrations/available-integrations/ci-integrations/github-actions/#configuring-the-postman-cli-for-github-actions
+
 # Newman Action
 
 Allows you to run Postman's headless collection runner, Newman, via a GitHub Action meaning no config of the Newman lib itself.
