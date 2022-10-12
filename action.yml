@@ -66,5 +66,5 @@ inputs:
   cookieJar:
     description: 'Pass a CookieJar file path as string to this property that will be deserialized using tough-cookie.'
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/index.js'
