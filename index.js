@@ -6,12 +6,12 @@ init()
 async function init () {
   try {
     const required = { required: true }
-    const apiBase = 'https://api.postman.com'
     const idRegex = /^[0-9]{7,}-\w{8}-\w{4}-\w{4}-\w{4}-\w{12}$/
 
     const options = {
       apiKey: get('apiKey'),
       collection: get('collection', required),
+      apiBase: get('apiBase', required),
       environment: get('environment'),
       envVar: safeParse(get('envVar')),
       globals: get('globals'),

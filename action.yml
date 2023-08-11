@@ -1,10 +1,12 @@
-name: 'Newman Action'
-description: 'Run Postman collections via Newman'
+name: 'Newman Action (version with apiBase)'
+description: 'Run Postman collections via Newman (version with apiBase). I will remove this when Matt include these changes, but, right now, I need this to do some testing' 
 author: 'Matt Ball'
 branding:
   icon: 'check-square'
   color: 'orange'
 inputs:
+  apiBase:
+    description: 'Postman API Base'
   apiKey:
     description: 'Postman API key'
   collection:
