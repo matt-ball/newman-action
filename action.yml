@@ -5,6 +5,8 @@ branding:
   icon: 'check-square'
   color: 'orange'
 inputs:
+  apiBase:
+    description: 'Postman API Base'
   apiKey:
     description: 'Postman API key'
   collection:
